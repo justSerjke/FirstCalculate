@@ -6,7 +6,8 @@ public class Examination {
     static int secondNumber;
     static int result;
     static String expression;
-    static boolean romanOrArab;
+    static boolean firstRomanOrArab;
+    static boolean secondRomanOrArab;
 
     public static void doCalculations() {
         Scanner scanner = new Scanner(System.in);
@@ -17,10 +18,10 @@ public class Examination {
         }
 
         Roman.addRomanNumber();
-        romanOrArab = Roman.romanNumbers.containsKey(strings[0]);
-        romanOrArab = Roman.romanNumbers.containsKey(strings[2]);
+        firstRomanOrArab = Roman.romanNumbers.containsKey(strings[0]);
+        secondRomanOrArab = Roman.romanNumbers.containsKey(strings[2]);
 
-        if (romanOrArab) {
+        if (firstRomanOrArab && secondRomanOrArab) {
             firstNumber = Roman.romanNumbers.get(strings[0]);
             secondNumber = Roman.romanNumbers.get(strings[2]);
             expression = strings[1];
