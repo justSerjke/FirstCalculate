@@ -6,8 +6,10 @@ public class Examination {
     static int secondNumber;
     static int result;
     static String expression;
-    static boolean firstRomanOrArab;
-    static boolean secondRomanOrArab;
+    static boolean firstRoman;
+    static boolean secondRoman;
+    static boolean firstArab;
+    static boolean secondArab;
 
     public static void doCalculations() {
         Scanner scanner = new Scanner(System.in);
@@ -18,10 +20,10 @@ public class Examination {
         }
 
         Roman.addRomanNumber();
-        firstRomanOrArab = Roman.romanNumbers.containsKey(strings[0]);
-        secondRomanOrArab = Roman.romanNumbers.containsKey(strings[2]);
+        firstRoman = Roman.romanNumbers.containsKey(strings[0]);
+        secondRoman = Roman.romanNumbers.containsKey(strings[2]);
 
-        if (firstRomanOrArab && secondRomanOrArab) {
+        if (firstRoman && secondRoman) {
             firstNumber = Roman.romanNumbers.get(strings[0]);
             secondNumber = Roman.romanNumbers.get(strings[2]);
             expression = strings[1];
@@ -49,6 +51,9 @@ public class Examination {
                 System.out.println("Проверьте правильность ввода значений");
                 throw exception;
             }
+            firstArab = Roman.romanNumbers.containsValue(firstNumber);
+            secondArab = Roman.romanNumbers.containsValue(secondNumber);
+            if (firstArab && secondArab) {
                 expression = strings[1];
                 switch (expression) {
                     case "+" -> {
@@ -65,7 +70,10 @@ public class Examination {
                     }
                     default -> throw new IllegalStateException("Не является математической операцией: " + expression);
                 }
-            System.out.println("Результат: " + result);
+                System.out.println("Результат: " + result);
+            } else {
+                throw new RuntimeException("Введенные значения должны быть от 1 до 10 включительно");
+            }
         }
     }
 }
